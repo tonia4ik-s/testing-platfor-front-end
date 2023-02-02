@@ -1,24 +1,60 @@
-import logo from './logo.svg';
 import './App.css';
+import Login from "./components/authentication/login";
+import ThemeProvider from "./theme";
+import {Route, Routes} from "react-router-dom";
+import Register from "./components/authentication/register";
+import MainPage from "./components/mainPage";
+import TestPage from "./components/testPage";
+import QuestionPage from "./components/questionPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ThemeProvider>
+        <Routes>
+              <Route
+                  exact
+                  path="/register"
+                  element={
+                    // <PrivateRoute>
+                    //   <DashboardLayout />
+                    // </PrivateRoute>
+                    <Register />
+                  }
+              />
+            <Route
+                exact
+                path="/login"
+                element={
+                    // <PrivateRoute>
+                    //   <DashboardLayout />
+                    // </PrivateRoute>
+                    <Login />
+                }
+            />
+            <Route
+                exact
+                path="/test"
+                element={
+                    // <PrivateRoute>
+                    //   <DashboardLayout />
+                    // </PrivateRoute>
+                    <TestPage />
+                }
+            />
+            <Route
+                exact
+                path="/question"
+                element={
+                    // <PrivateRoute>
+                    //   <DashboardLayout />
+                    // </PrivateRoute>
+                    <QuestionPage />
+                }
+            />
+            <Route exact path="/" element={<MainPage />} />
+        </Routes>
+
+      </ThemeProvider>
   );
 }
 
