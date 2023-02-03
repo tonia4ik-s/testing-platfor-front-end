@@ -1,7 +1,9 @@
 // material
 import { alpha, styled } from '@mui/material/styles';
-import {Box, Stack, AppBar, Toolbar, IconButton, Button} from '@mui/material';
+import {Box, Stack, AppBar, Toolbar, Button} from '@mui/material';
 import Typography from "@mui/material/Typography";
+import {logoutUser} from "../services/authentication";
+import {createBrowserHistory} from "history";
 
 // ----------------------------------------------------------------------
 
@@ -23,6 +25,12 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     },
 }));
 
+const history = createBrowserHistory();
+
+const logOut = () => {
+    logoutUser(history)
+};
+
 // ----------------------------------------------------------------------
 
 export default function Navbar() {
@@ -35,7 +43,7 @@ export default function Navbar() {
                 <Box sx={{ flexGrow: 1 }} />
 
                 <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
-                    <Button size='large'>Log out</Button>
+                    <Button onClick={logOut} size='large'>Log out</Button>
                 </Stack>
             </ToolbarStyle>
         </RootStyle>

@@ -7,11 +7,9 @@ import Typography from "@mui/material/Typography";
 import Navbar from "../Navbar";
 import {getUserTests} from "../../services/userTests";
 import {Button, Card, CardActions, CardContent} from "@mui/material";
-import {createBrowserHistory} from "history";
 import {Link} from "react-router-dom";
 
 export default function MainPage() {
-    const history = createBrowserHistory();
     const [userName, setUserName] = useState();
     const [userTests, setUserTests] = useState();
 
@@ -49,39 +47,40 @@ export default function MainPage() {
                 { userTests != null ?
                     <div>
                         { userTests.map((test, i) => {
-                            console.log("Entered");
-                            // Return the element. Also pass key
                             return (
                                 <Card
-                                    key={test}
+                                    key={i}
                                     sx={{ my: 5, minWidth: 700 }}
                                 >
                                     <CardContent>
-                                        {/*<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>*/}
-                                        {/*    Word of the Day*/}
-                                        {/*</Typography>*/}
                                         <Typography variant="h3" component="div">
                                             {test.title}
                                         </Typography>
-                                        {/*<Typography sx={{ mb: 1.5 }} color="text.secondary">*/}
-                                        {/*    adjective*/}
-                                        {/*</Typography>*/}
                                         <Typography variant="body1">
                                             { test.description }
                                         </Typography>
+                                        { test.isFinished ?
+                                            <b style={{ color: 'darkblue'}}>
+                                                Your result: { test.result }/{test.maxResult}
+                                            </b> : <></>}
                                     </CardContent>
                                     <CardActions sx={{ justifyContent: 'right', mr: 3, mb: 2}}>
                                         <div>
                                             { test.isFinished ?
-                                                <b style={{ color: 'darkblue'}}>
-                                                    Your result: { test.result }/{test.maxResult}
-                                                </b>
+                                                <Button
+                                                    component={Link}
+                                                    to="/result"
+                                                    state={{ test: {test} }}
+                                                    size="large"
+                                                    sx={{ marginLeft: "auto"}}
+                                                >
+                                                    View my Answers
+                                                </Button>
                                                 :
                                                 <Button
                                                     component={Link}
                                                     to="/test"
                                                     state={{ test: {test} }}
-                                                    // onClick={() => moveToTest(test)}
                                                     variant="contained"
                                                     size="large"
                                                     sx={{ marginLeft: "auto"}}
@@ -98,7 +97,6 @@ export default function MainPage() {
                     :
                     <></>
                 }
-
             </Box>
         </Grid>
     )

@@ -6,6 +6,9 @@ import Register from "./components/authentication/register";
 import MainPage from "./components/mainPage";
 import TestPage from "./components/testPage";
 import QuestionPage from "./components/questionPage";
+import ResultPage from "./components/ResultPage";
+import PrivateRoute from "./privateRoute";
+import PrivateAuthRoute from "./privateAuthRoute";
 
 function App() {
   return (
@@ -15,45 +18,50 @@ function App() {
                   exact
                   path="/register"
                   element={
-                    // <PrivateRoute>
-                    //   <DashboardLayout />
-                    // </PrivateRoute>
-                    <Register />
+                      <PrivateAuthRoute>
+                          <Register />
+                      </PrivateAuthRoute>
                   }
               />
             <Route
                 exact
                 path="/login"
                 element={
-                    // <PrivateRoute>
-                    //   <DashboardLayout />
-                    // </PrivateRoute>
-                    <Login />
+                    <PrivateAuthRoute>
+                        <Login />
+                    </PrivateAuthRoute>
                 }
             />
             <Route
                 exact
                 path="/test"
                 element={
-                    // <PrivateRoute>
-                    //   <DashboardLayout />
-                    // </PrivateRoute>
-                    <TestPage />
+                    <PrivateRoute>
+                        <TestPage />
+                    </PrivateRoute>
                 }
             />
             <Route
                 exact
                 path="/question"
                 element={
-                    // <PrivateRoute>
-                    //   <DashboardLayout />
-                    // </PrivateRoute>
-                    <QuestionPage />
+                    <PrivateRoute>
+                        <QuestionPage />
+                    </PrivateRoute>
                 }
             />
-            <Route exact path="/" element={<MainPage />} />
+            <Route
+                exact
+                element={
+                    <PrivateRoute>
+                        <ResultPage />
+                    </PrivateRoute>
+                }
+                path="/result"
+            />
+            <Route exact path="/" element={ <PrivateRoute><MainPage /></PrivateRoute>}/>
+            <Route exact path="/" element={<Login />} />
         </Routes>
-
       </ThemeProvider>
   );
 }

@@ -1,37 +1,17 @@
 import Grid from "@mui/material/Grid";
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Navbar from "../Navbar";
 import {Button, Card, CardActions, CardContent, Checkbox, FormControlLabel} from "@mui/material";
 import {Link, useLocation} from "react-router-dom";
-import {getUserInfo} from "../../services/users";
-import {getUserTests} from "../../services/userTests";
-import {getQuestionsByTestId} from "../../services/questions";
 
 export default function TestPage() {
     const location = useLocation();
     const {test} = location.state.test;
 
     const [checked, setChecked] = useState(false);
-
-
-    // useEffect( () => {
-    //     async function fetchData() {
-    //         try {
-    //
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     }
-    //     fetchData().then();
-    // }, []);
-
-    // async function getQuestions(){
-    //     setTestQuestions(await getQuestionsByTestId(test.id))
-    //     console.log(3, testQuestions)
-    // }
 
     return(
         <Grid container flexDirection>
@@ -51,7 +31,6 @@ export default function TestPage() {
                         <Typography variant="h3" component="div">
                             {test.title}
                         </Typography>
-
                         <Typography variant="body1">
                             <br />
                             { test.description }

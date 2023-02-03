@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
-// import { Form, Input, Button } from "antd";
-// import { Link } from "react-router-dom";
-// import { inputValidationErrorMessages } from "../../../constants/messages/inputValidationErrors";
-import { IconButton, InputAdornment, Link, Stack } from "@mui/material";
+import { IconButton, InputAdornment, Stack } from "@mui/material";
 import { createBrowserHistory } from "history";
 import { LoadingButton } from "@mui/lab";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "../../../services/authentication";
-// import { errorMessage } from "../../../services/alerts";
-// import { authenticationMessages } from "../../../constants/messages/authentication";
-// import { generalMessages } from "../../../constants/messages/general";
-// import InputRules from "../../../constants/inputRules";
 import tokenService from "../../../services/tokens";
-import { FormProvider, RHFCheckbox, RHFTextField } from "../../../themeComponents/hook-form";
+import { FormProvider, RHFTextField } from "../../../themeComponents/hook-form";
 import Iconify from "../../../themeComponents/Iconify";
 
 function LoginForm() {
@@ -27,13 +20,6 @@ function LoginForm() {
   const onFinish = (values) => {
     login(values, history);
   };
-
-  // const onFinishFailed = () => {
-    // errorMessage(
-    //   authenticationMessages.LOGIN_BLOCKED,
-    //   generalMessages.CORRECT_ALL_COMMENTS
-    // );
-  // };
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -60,7 +46,7 @@ function LoginForm() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onFinish)}>
       <Stack width={"300pt"} spacing={3}>
-        <RHFTextField name="email" label="Email address" />
+        <RHFTextField name="email" label="Email or Username" />
 
         <RHFTextField
           name="password"

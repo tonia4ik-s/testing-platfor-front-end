@@ -3,6 +3,7 @@ export const AUTHENTICATION_URL = "/Authentication";
 export const USER_URL = "/User";
 export const USER_TEST_URL = "/UserTest";
 export const QUESTION_URL = "/Question";
+export const USER_ANSWER_URL = "/UserAnswer";
 
 export const AUTHENTICATION_URLS = {
   REGISTRATION: `${AUTHENTICATION_URL  }/register`,
